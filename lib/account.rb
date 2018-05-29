@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Account
+  class NotEnoughBalance < StandardError; end
 
   attr_reader :balance
 
@@ -13,6 +14,7 @@ class Account
   end
 
   def withdraw(amount)
+    raise NotEnoughBalance if amount > @balance
     @balance -= amount
   end
 end

@@ -10,7 +10,7 @@ describe Account do
   describe '#balance' do
     subject { account.balance }
 
-    it {is_expected.to eq 100 }
+    it { is_expected.to eq 100 }
   end
 
   describe '#deposit' do
@@ -21,9 +21,20 @@ describe Account do
   end
 
   describe '#withdraw' do
+    let(:withdraw) { account.withdraw(amount) }
+    let(:amount) { 50 }
+
     specify do
-      account.withdraw(50)
+      withdraw
       expect(account.balance).to eq 50
+    end
+
+    context 'when the balance is not enough' do
+      let(:amount) { 150 }
+
+      specify do
+        expect { withdraw }.to raise_error(described_class::NotEnoughBalance)
+      end
     end
   end
 end
