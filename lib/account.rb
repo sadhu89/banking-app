@@ -3,10 +3,13 @@
 class Account
   class NotEnoughBalance < StandardError; end
 
-  attr_reader :balance
+  attr_reader :id, :balance
+  @@counter = 0
 
   def initialize(initial_balance)
     @balance = initial_balance
+    @@counter += 1
+    @id = @@counter
   end
 
   def deposit(amount)

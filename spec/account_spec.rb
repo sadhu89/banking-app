@@ -37,4 +37,15 @@ describe Account do
       end
     end
   end
+
+  describe 'generates ids sequentially' do
+    let(:first_account) { described_class.new(100) }
+    let(:second_account) { described_class.new(200) }
+
+    specify do
+      first_account
+      second_account
+      expect(second_account.id).to eq(first_account.id + 1)
+    end
+  end
 end

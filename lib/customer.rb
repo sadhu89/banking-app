@@ -10,7 +10,7 @@ class Customer
     @last_name = last_name
     @email = email
     @phone = phone
-    @@counter = @@counter + 1
+    @@counter += 1
     @id = @@counter
   end
 end
